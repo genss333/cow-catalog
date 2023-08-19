@@ -32,11 +32,13 @@ const CowDetail = () => {
         <h1>CowDetail</h1><br />
         <Row>
             <Col>
-              <img src={ImageNetwork(cow.cow_img)} alt={cow.cow_name} width={200} />
+              <img src={ImageNetwork(cow.cow_img)} alt={cow.cow_name} style={{maxWidth:"25rem"}} />
             </Col>
             <Col>
-                <h2>{cow.cow_name}</h2>
-                <p>{cow.cow_breed}</p>
+                <h2>ชื่อโค: {cow.cow_name}</h2>
+                <p>สายพันธุ์:{cow.cow_breed}</p>
+                <p>อายุ: {cow.cow_age}</p>
+                <p>เพศ: {cow.cow_sex =="F" ? "เพศเมีย":"เพศผู้"}</p>
                 <Button href='/catalog' onClick={handleCreateCatalog} variant="primary">เพิ่มลงแคตตาลอก</Button>
             </Col>
         </Row>

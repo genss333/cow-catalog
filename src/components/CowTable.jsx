@@ -19,7 +19,7 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
     }, [member]);
     
   return (
-    <Table striped bordered hover>
+    <Table responsive striped bordered hover>
       <thead>
         <tr>
           <th>#</th>
