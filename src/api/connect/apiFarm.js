@@ -1,0 +1,18 @@
+import apiConnect from "../apiConnect";
+
+export default {
+  getFarmList: async () => {
+    try {
+      const farmListResponse = await apiConnect.get(
+        '/farm_coop/'
+      );
+      if (farmListResponse.status === 200) {
+        return farmListResponse.data;
+      } else {
+        throw new Error("Failed to fetch cows list");
+      }
+    } catch (error) {
+      throw new Error("Failed to fetch cows list");
+    }
+  },
+};
