@@ -1,6 +1,7 @@
 {
   "name": "cow-catalog",
   "private": true,
+  "homepage": "https://zyanwoa.com/naihoi",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

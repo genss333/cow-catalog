@@ -4,7 +4,7 @@ export default {
   getCowList: async (member) => {
     try {
       const cowListResponse = await apiConnect.get(
-        'cow/in_cow_coop/' + member
+        '/cow/in_cow_coop/' + member
       );
       if (cowListResponse.status === 200) {
         return cowListResponse.data;
@@ -19,7 +19,7 @@ export default {
   getCowCatalogList: async (lotNo) => {
     try {
       const cowCatalogListResponse = await apiConnect.get(
-        'zx/getCatalog/' + lotNo
+        '/zx/getCatalog/' + lotNo
       );
       if (cowCatalogListResponse.status === 200) {
         return cowCatalogListResponse.data;
@@ -34,7 +34,7 @@ export default {
   createCowCatalog: async (cowCatalog,lotNo) => {
     try {
       const cowCatalogResponse = await apiConnect.post(
-        'zx/createCatalog/',
+        '/zx/createCatalog/',
         cowCatalog
       );
       if (cowCatalogResponse.status === 201) {

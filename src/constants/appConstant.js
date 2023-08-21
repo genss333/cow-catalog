@@ -1,1 +1,1 @@
-export const Host = "http://192.168.18.22:8081";
+export const Host = "https://api.zyanwoa.com/beef/v1";
