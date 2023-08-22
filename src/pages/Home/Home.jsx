@@ -8,7 +8,7 @@ import FarmDropDown from "../../components/DropDown";
 
 const Home = () => {
   const [selectedCows, setSelectedCows] = useState([]);
-  const [memberUuid, setMemberUuid] = useState("");
+  const [memberUuid, setMemberUuid] = useState("ทั้งหมด");
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -44,15 +44,19 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Container >
-        <Row >
-          <Col sm={11}>
-            <FarmDropDown handleSelectFarm={handleSelectFarm} />
+      <Container>
+      <FarmDropDown handleSelectFarm={handleSelectFarm} />
+      <br />
+        <Row>
+          <Col sm={11} md={10} lg={10} xl={11}>
           </Col>
           <Col>
-              <Button variant="success" onClick={handleCreateCatalog} href="/catalog">
-                สร้าง{" "}
-                <Badge bg="secondary">{selectedCows.length}</Badge>
+              <Button
+                variant="success"
+                onClick={handleCreateCatalog}
+                href="/catalog"
+              >
+                สร้าง <Badge bg="secondary">{selectedCows.length}</Badge>
               </Button>
           </Col>
         </Row>

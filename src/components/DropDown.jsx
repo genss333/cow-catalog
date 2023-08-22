@@ -11,6 +11,9 @@ function FarmDropDown({ handleSelectFarm }) {
 
   const handleSelectFarmForm = (e) => {
     const selectedMemberUuid = e.target.value;
+    if (selectedMemberUuid === "ทั้งหมด") {
+      window.location.reload();
+    }
     const selectedFarm = farmList.find(
       (farm) => farm.member_uuid === selectedMemberUuid
     );
@@ -26,7 +29,7 @@ function FarmDropDown({ handleSelectFarm }) {
           aria-label="Default select example"
           onChange={handleSelectFarmForm}
         >
-          <option>เลือกฟาร์ม</option>
+          <option>ทั้งหมด</option>
           {farmList.length > 0 ? (
             farmList.map((farm, index) => (
               <option key={index} value={farm.member_uuid}>

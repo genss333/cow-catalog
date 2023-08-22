@@ -15,6 +15,19 @@ export default {
     }
   },
 
+  getCowListByFarm: async (member) => {
+    try {
+      const cowListResponse = await apiConnect.get('/cow/in_cow_coop/'+member);
+      if (cowListResponse.status === 200) {
+        return cowListResponse.data;
+      } else {
+        throw new Error("Failed to fetch cows list");
+      }
+    } catch (error) {
+      throw new Error("Failed to fetch cows list");
+    }
+  },
+
   getCowCatalogList: async (lotNo) => {
     try {
       const cowCatalogListResponse = await apiConnect.get(

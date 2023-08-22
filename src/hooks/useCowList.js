@@ -4,9 +4,20 @@ import apiCow from "../api/connect/apiCow";
 const useCowList = () => {
   const [cowList, setCowList] = useState([]);
   const [cowCatalog, setCowCatalog] = useState({});
-  const fetchCowList = async (member) => {
+  const fetchCowList = async () => {
     try {
-      apiCow.getCowList(member).then((response) => {
+      apiCow.getCowList().then((response) => {
+        setCowList(response);
+      });
+    } catch (error) {
+      navigate("/error");
+      throw error;
+    }
+  };
+
+  const fetchCowListByFarm = async (member) => {
+    try {
+      apiCow.getCowListByFarm(member).then((response) => {
         setCowList(response);
       });
     } catch (error) {
@@ -36,7 +47,7 @@ const useCowList = () => {
     }
   };
 
-  return { cowList, fetchCowList, createCowCatalog, fetchCowCatalogList, cowCatalog };
+  return { cowList, fetchCowList,fetchCowListByFarm, createCowCatalog, fetchCowCatalogList, cowCatalog };
 };
 
 export default useCowList;
