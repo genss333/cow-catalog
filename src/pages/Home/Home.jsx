@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
-import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/Container";
-import Row from 'react-bootstrap/Row';
 import CowTable from "../../components/CowTable";
 import FarmDropDown from "../../components/DropDown";
 
 const Home = () => {
   const [selectedCows, setSelectedCows] = useState([]);
-  const [memberUuid , setMemberUuid] = useState('');
+  const [memberUuid, setMemberUuid] = useState("");
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -44,27 +43,27 @@ const Home = () => {
   };
 
   return (
-    <Container>
-      <br />
-      <Row>
-        <Col>
-          <h1>Naihoi</h1>
-        </Col>
-        <Col md="auto"></Col>
-        <Col xs lg="3">
-          <Button variant="primary" href="/catalog">
-            แคตตาลอก <Badge bg="secondary">{cart.length}</Badge>
-          </Button>
-        </Col>
-      </Row>
-      <br />
-      <FarmDropDown handleSelectFarm={handleSelectFarm}/>
-      <br />
-      <CowTable handleSelectCow={handleCowSelect} selectedCows={selectedCows} member={memberUuid} />
-      <Button variant="success" onClick={handleCreateCatalog} href="/catalog">
-        สร้างแคตตาลอก <Badge bg="secondary">{selectedCows.length}</Badge>
-      </Button>
-    </Container>
+    <Fragment>
+      <Container >
+        <Row >
+          <Col sm={11}>
+            <FarmDropDown handleSelectFarm={handleSelectFarm} />
+          </Col>
+          <Col>
+              <Button variant="success" onClick={handleCreateCatalog} href="/catalog">
+                สร้าง{" "}
+                <Badge bg="secondary">{selectedCows.length}</Badge>
+              </Button>
+          </Col>
+        </Row>
+        <br />
+        <CowTable
+          handleSelectCow={handleCowSelect}
+          selectedCows={selectedCows}
+          member={memberUuid}
+        />
+      </Container>
+    </Fragment>
   );
 };
 

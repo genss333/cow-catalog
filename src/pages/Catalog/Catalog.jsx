@@ -4,8 +4,6 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import CowTableCatalog from "../../components/CowTableCatalog";
 import LoadingDialog from "../../components/LoadingDialog";
-import MemberData from "../../components/MemberData";
-import NumberOfCatalog from "../../components/NumberOfCatalog";
 import useCowList from "../../hooks/useCowList";
 
 const Catalog = () => {
@@ -46,8 +44,9 @@ const Catalog = () => {
       },
     };
     try {
-      createCowCatalog(formData,lotNo);
       setShow(true);
+      createCowCatalog(formData, lotNo);
+      setShow(false);
       localStorage.removeItem("cart");
       setCart([]);
     } catch (error) {
@@ -97,24 +96,6 @@ const Catalog = () => {
     }
     return (
       <Container>
-        <h1>Catalog</h1>
-        <br />
-        <Row>
-          <Col>
-            <MemberData data={formValues} />
-          </Col>
-          <Col md="auto"></Col>
-          <Col xs lg="3">
-            <NumberOfCatalog lot={uuidv4()} />
-          </Col>
-        </Row>
-        <br />
-        <CowTableCatalog
-          handleDelete={handleDelete}
-          cart={cart}
-          isConfirm={isConfirm}
-        />
-        <br /> <br />
         {isConfirm ? (
           <div>
             <Button variant="success" onClick={handleConfirmCatalog}>
@@ -134,18 +115,6 @@ const Catalog = () => {
     return (
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Container>
-          <br />
-          <Row>
-            <Col>
-              <h1>Catalog</h1> <br />
-            </Col>
-            <Col md="auto"></Col>
-            <Col xs lg="3">
-              <Button variant="primary" href="/">
-                กลับหน้าหลัก
-              </Button>
-            </Col>
-          </Row>
           <Row className="mb-3">
             <Form.Group as={Col} md="4" controlId="validationCustom01">
               <Form.Label>First name</Form.Label>
@@ -167,6 +136,17 @@ const Catalog = () => {
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
+            <Form.Group as={Col} md="4" style={{paddingTop:"2rem"}}>
+              {cart.length > 0 ? (
+                <Button type="submit" variant="primary">
+                  ยืนยันการสร้างแคตตาล็อก
+                </Button>
+              ) : (
+                <Button type="submit" variant="secondary" disabled>
+                  ยืนยันการสร้างแคตตาล็อก
+                </Button>
+              )}
+            </Form.Group>
           </Row>
           <br />
           <CowTableCatalog
@@ -174,16 +154,6 @@ const Catalog = () => {
             cart={cart}
             isConfirm={isConfirm}
           />
-          <br /> <br />
-          {cart.length > 0 ? (
-            <Button type="submit" variant="primary">
-              ยืนยันการสร้างแคตตาล็อก
-            </Button>
-          ) : (
-            <Button type="submit" variant="secondary" disabled>
-              ยืนยันการสร้างแคตตาล็อก
-            </Button>
-          )}
         </Container>
       </Form>
     );

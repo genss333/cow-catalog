@@ -2,33 +2,51 @@ import React from "react";
 import { CloseButton } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { ImageNetwork } from "../service/imageNetwork";
+import cowImage from "../assets/cow-1.jpg";
+import { Link } from "react-router-dom";
 
 const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
   return (
     <Table responsive striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Image</th>
-          <th>Breed</th>
-          {isConfirm ? null : <th>Delete</th>}
+          <th></th>
+          <th>ชื่อโค</th>
+          <th>รายละเอียด</th>
+          <th>สถานะ</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {cart.map((cowItem) => (
           <tr key={cowItem.cow_id}>
-            <td>{cowItem.cow_id}</td>
-            <td>{cowItem.cow_name}</td>
-            <td>
-            <img src={ImageNetwork(cowItem.cow_img)} alt={cowItem.cow_name} width={200} />
+            <td align="center" onClick={() => handleCowDetail(cowItem)}>
+              <Link to={"/detail"}>
+                <img
+                  src={ImageNetwork(cowItem.cow_img)}
+                  alt={cowItem.cow_name}
+                  style={{ maxWidth: "5rem" }}
+                  onError={(e) => {
+                    e.target.src = cowImage;
+                  }}
+                />
+              </Link>
             </td>
-            <td>{cowItem.cow_breed}</td>
-            {isConfirm ? null : (
-              <td>
-                <CloseButton onClick={() => handleDelete(cowItem)} />
-              </td>
-            )}
+            <td align="left">{cowItem.cow_name}</td>
+            <td align="left">
+              <p>สายพันธุ์: {cowItem.cow_breed}</p>
+              <p>อายุ: {cowItem.cow_age}</p>
+              <p>น้ำหนัก: {cowItem.cow_weight}</p>
+              <p>เพศ: {cowItem.cow_sex == "F" ? "เพศเมีย" : "เพศผู้"}</p>
+            </td>
+            <td align="left">{cowItem.cow_belly}</td>
+            <td align="center">
+              {isConfirm ? null : (
+                <td>
+                  <CloseButton onClick={() => handleDelete(cowItem)} />
+                </td>
+              )}
+            </td>
           </tr>
         ))}
       </tbody>

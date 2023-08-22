@@ -3,11 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Col from "react-bootstrap/Col";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import cowImage from "../../assets/cow-1.jpg";
 import { ImageNetwork } from '../../service/imageNetwork';
 
 const CowDetail = () => {
   const [cart, setCart] = useState([]);
-
+  const cowItem = JSON.parse(localStorage.getItem("cowDetail"));
   const cow = JSON.parse(localStorage.getItem("cowDetail"));
 
   useEffect(() => {
@@ -32,7 +33,14 @@ const CowDetail = () => {
         <h1>CowDetail</h1><br />
         <Row>
             <Col>
-              <img src={ImageNetwork(cow.cow_img)} alt={cow.cow_name} style={{maxWidth:"25rem"}} />
+            <img
+                src={ImageNetwork(cowItem.cow_img)}
+                alt={cowItem.cow_name}
+                style={{ maxWidth: "25rem" }}
+                onError={(e) => {
+                  e.target.src = cowImage;
+                }}
+              />
             </Col>
             <Col>
                 <h2>ชื่อโค: {cow.cow_name}</h2>

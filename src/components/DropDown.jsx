@@ -30,7 +30,7 @@ function FarmDropDown({ handleSelectFarm }) {
           {farmList.length > 0 ? (
             farmList.map((farm, index) => (
               <option key={index} value={farm.member_uuid}>
-                {farm.farm_name}
+                {farm.farm_name || farm.member_fullname}
               </option>
             ))
           ) : (

@@ -1,11 +1,10 @@
+import { coopId } from "../../constants/appConstant";
 import apiConnect from "../apiConnect";
 
 export default {
-  getCowList: async (member) => {
+  getCowList: async () => {
     try {
-      const cowListResponse = await apiConnect.get(
-        '/cow/in_cow_coop/' + member
-      );
+      const cowListResponse = await apiConnect.get('/zx/cow/'+coopId);
       if (cowListResponse.status === 200) {
         return cowListResponse.data;
       } else {

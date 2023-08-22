@@ -1,11 +1,10 @@
+import { coopId } from "../../constants/appConstant";
 import apiConnect from "../apiConnect";
 
 export default {
   getFarmList: async () => {
     try {
-      const farmListResponse = await apiConnect.get(
-        '/farm_coop/'
-      );
+      const farmListResponse = await apiConnect.get('/zx/farm/'+coopId);
       if (farmListResponse.status === 200) {
         return farmListResponse.data;
       } else {
