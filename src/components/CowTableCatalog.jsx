@@ -1,9 +1,9 @@
 import React from "react";
 import { CloseButton } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { ImageNetwork } from "../service/imageNetwork";
-import cowImage from "../assets/cow-1.jpg";
 import { Link } from "react-router-dom";
+import cowImage from "../assets/cow-1.jpg";
+import { ImageNetwork } from "../service/imageNetwork";
 
 const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
   return (
@@ -14,7 +14,7 @@ const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
           <th>ชื่อโค</th>
           <th>รายละเอียด</th>
           <th>สถานะ</th>
-          <th></th>
+          {isConfirm ? null : <th></th>}
         </tr>
       </thead>
       <tbody>
@@ -39,13 +39,11 @@ const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
               <p>เพศ: {cowItem.cow_sex == "F" ? "เพศเมีย" : "เพศผู้"}</p>
             </td>
             <td align="left">{cowItem.cow_belly}</td>
-            <td align="center">
               {isConfirm ? null : (
-                <td>
+                <td align="center">
                   <CloseButton onClick={() => handleDelete(cowItem)} />
                 </td>
               )}
-            </td>
           </tr>
         ))}
       </tbody>

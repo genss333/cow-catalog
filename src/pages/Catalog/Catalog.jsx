@@ -29,6 +29,7 @@ const Catalog = () => {
   const handleDelete = (cowItem) => {
     const updatedCart = cart.filter((item) => item.cow_id !== cowItem.cow_id);
     updateCartAndStorage(updatedCart);
+    window.location.reload();
   };
 
   const handleCancle = () => {
@@ -98,13 +99,28 @@ const Catalog = () => {
       <Container>
         {isConfirm ? (
           <div>
-            <Button variant="success" onClick={handleConfirmCatalog}>
-              ยืนยันการสร้างแคตตาล็อก
-            </Button>
-            &nbsp;&nbsp;&nbsp;
-            <Button variant="info" onClick={handleCancle}>
-              กลับไปแก้ไขแคตตาล็อก
-            </Button>
+            <div
+              style={{
+                margin: "0 auto",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "end",
+              }}
+            >
+              <Button variant="info" onClick={handleCancle}>
+                แก้ไข
+              </Button>
+              &nbsp;&nbsp;&nbsp;
+              <Button variant="success" onClick={handleConfirmCatalog}>
+                ยืนยันการสร้างแคตตาล็อก
+              </Button>
+            </div>
+            <br /> <br />
+            <CowTableCatalog
+              handleDelete={handleDelete}
+              cart={cart}
+              isConfirm={isConfirm}
+            />
           </div>
         ) : (
           <div></div>
@@ -136,7 +152,7 @@ const Catalog = () => {
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col} md="4" style={{paddingTop:"2rem"}}>
+            <Form.Group as={Col} md="4" style={{ paddingTop: "2rem" }}>
               {cart.length > 0 ? (
                 <Button type="submit" variant="primary">
                   ยืนยันการสร้างแคตตาล็อก
