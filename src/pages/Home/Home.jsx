@@ -8,7 +8,7 @@ import FarmDropDown from "../../components/DropDown";
 
 const Home = () => {
   const [selectedCows, setSelectedCows] = useState([]);
-  const [memberUuid, setMemberUuid] = useState("");
+  const [farmUuid, setFarmUuid] = useState("");
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Home = () => {
   };
 
   const handleSelectFarm = (farm) => {
-    setMemberUuid(farm.member_uuid);
+    setFarmUuid(farm.farm_uuid);
   };
 
   return (
@@ -64,7 +64,7 @@ const Home = () => {
         <CowTable
           handleSelectCow={handleCowSelect}
           selectedCows={selectedCows}
-          member={memberUuid}
+          farmUuid={farmUuid}
         />
       </Container>
     </Fragment>

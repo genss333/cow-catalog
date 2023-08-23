@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
 import Pagination from "react-bootstrap/Pagination"; // Import Pagination component
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
@@ -7,9 +6,9 @@ import cowImage from "../assets/cow-1.jpg";
 import useCowList from "../hooks/useCowList";
 import { ImageNetwork } from "../service/imageNetwork";
 
-const CowTable = ({ handleSelectCow, selectedCows,member }) => {
+const CowTable = ({ handleSelectCow, selectedCows, farmUuid }) => {
   const { cowList, fetchCowList } = useCowList();
-  const itemsPerPage = 10; 
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleCowDetail = (cow) => {
@@ -17,11 +16,11 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
   };
 
   useEffect(() => {
-      fetchCowList();
+    fetchCowList();
   }, []);
 
   const filteredCowList = cowList.filter((cowItem) =>
-    member ? cowItem.member_uuid === member : true
+    farmUuid ? cowItem.farm_uuid === farmUuid : true
   );
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -48,6 +47,13 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
           </tr>
         </thead>
         <tbody>
+          {currentData.length === 0 && (
+            <tr>
+              <td colSpan="5" align="center">
+                ไม่มีข้อมูล
+              </td>
+            </tr>
+          )}
           {currentData.map((cowItem) => (
             <tr key={cowItem.cow_id}>
               <td align="center" onClick={() => handleCowDetail(cowItem)}>
@@ -80,39 +86,42 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
           ))}
         </tbody>
       </Table>
-      <Row>
-        <Col></Col>
-        <Col>
-          <Pagination>
-            <Pagination.First
-              onClick={() => handlePageChange(1)}
-              disabled={currentPage === 1}
-            />
-            <Pagination.Prev
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            />
-            {[...Array(totalPages)].map((_, page) => (
-              <Pagination.Item
-                key={page}
-                active={page + 1 === currentPage}
-                onClick={() => handlePageChange(page + 1)}
-              >
-                {page + 1}
-              </Pagination.Item>
-            ))}
-            <Pagination.Next
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            />
-            <Pagination.Last
-              onClick={() => handlePageChange(totalPages)}
-              disabled={currentPage === totalPages}
-            />
-          </Pagination>
-        </Col>
-        <Col></Col>
-      </Row>
+      <div
+        style={{
+          margin: "0 auto",
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Pagination>
+          <Pagination.First
+            onClick={() => handlePageChange(1)}
+            disabled={currentPage === 1}
+          />
+          <Pagination.Prev
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {[...Array(totalPages)].map((_, page) => (
+            <Pagination.Item
+              key={page}
+              active={page + 1 === currentPage}
+              onClick={() => handlePageChange(page + 1)}
+            >
+              {page + 1}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          />
+          <Pagination.Last
+            onClick={() => handlePageChange(totalPages)}
+            disabled={currentPage === totalPages}
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };

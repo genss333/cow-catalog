@@ -30,19 +30,19 @@ const CowDetail = () => {
 
   return (
     <Container>
-        <h1>CowDetail</h1><br />
         <Row>
-            <Col>
+            <Col sm={10} md={6} lg={8}>
             <img
                 src={ImageNetwork(cowItem.cow_img)}
                 alt={cowItem.cow_name}
-                style={{ maxWidth: "25rem" }}
+                style={{ maxWidth: "100%" }}
                 onError={(e) => {
                   e.target.src = cowImage;
                 }}
               />
             </Col>
             <Col>
+            <br />
                 <h2>ชื่อโค: {cow.cow_name}</h2>
                 <p>สายพันธุ์:{cow.cow_breed}</p>
                 <p>อายุ: {cow.cow_age}</p>
