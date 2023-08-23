@@ -8,8 +8,8 @@ import useCowList from "../hooks/useCowList";
 import { ImageNetwork } from "../service/imageNetwork";
 
 const CowTable = ({ handleSelectCow, selectedCows,member }) => {
-  const { cowList, fetchCowList,fetchCowListByFarm } = useCowList();
-  const itemsPerPage = 10; // Define the number of items to display per page
+  const { cowList, fetchCowList } = useCowList();
+  const itemsPerPage = 10; 
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleCowDetail = (cow) => {
@@ -17,19 +17,19 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
   };
 
   useEffect(() => {
-    if(member !== "ทั้งหมด"){
-      fetchCowListByFarm(member);
-    }else{
       fetchCowList();
-    }
-  }, [member]);
+  }, []);
+
+  const filteredCowList = cowList.filter((cowItem) =>
+    member ? cowItem.member_uuid === member : true
+  );
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const currentData = cowList.slice(startIndex, endIndex);
+  const currentData = filteredCowList.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(cowList.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredCowList.length / itemsPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -66,7 +66,6 @@ const CowTable = ({ handleSelectCow, selectedCows,member }) => {
               <td align="left">
                 <p>สายพันธุ์: {cowItem.cow_breed}</p>
                 <p>อายุ: {cowItem.cow_age}</p>
-                <p>น้ำหนัก: {cowItem.cow_weight}</p>
                 <p>เพศ: {cowItem.cow_sex === "F" ? "เพศเมีย" : "เพศผู้"}</p>
               </td>
               <td align="left">{cowItem.cow_belly}</td>

@@ -13,9 +13,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/detail" element={<CowDetail />} />
           <Route path="/catalog" element={<Catalog />} />
-          <Route path="/catalog/:lotNo" element={<Recipt />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
+        <Route path="/catalog/:lotNo" element={<Recipt />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   );

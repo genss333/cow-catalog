@@ -8,7 +8,7 @@ import FarmDropDown from "../../components/DropDown";
 
 const Home = () => {
   const [selectedCows, setSelectedCows] = useState([]);
-  const [memberUuid, setMemberUuid] = useState("ทั้งหมด");
+  const [memberUuid, setMemberUuid] = useState("");
   const [cart, setCart] = useState([]);
 
   useEffect(() => {

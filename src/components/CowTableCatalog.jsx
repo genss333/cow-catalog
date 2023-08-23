@@ -36,7 +36,6 @@ const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
             <td align="left">
               <p>สายพันธุ์: {cowItem.cow_breed}</p>
               <p>อายุ: {cowItem.cow_age}</p>
-              <p>น้ำหนัก: {cowItem.cow_weight}</p>
               <p>เพศ: {cowItem.cow_sex == "F" ? "เพศเมีย" : "เพศผู้"}</p>
             </td>
             <td align="left">{cowItem.cow_belly}</td>
