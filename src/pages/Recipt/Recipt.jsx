@@ -11,6 +11,10 @@ const Recipt = () => {
   const [qrCodeValue, setQrCodeValue] = useState(""); // State to hold QR code value
   const { fetchCowCatalogList, cowCatalog } = useCowList();
 
+  const handleCowDetail = (cow) => {
+    localStorage.setItem("cowDetail", JSON.stringify(cow));
+  };
+
   const onDownloadQrCode = () => {
     const canvas = document.getElementById("qrcode");
     if (canvas) {
@@ -73,8 +77,8 @@ const Recipt = () => {
             cowCatalog.cow_list.length > 0 &&
             cowCatalog.cow_list.map((cowItem) => (
               <tr key={cowItem.cow_id}>
-                <td>
-                  <Link to={"/detail"}>
+                <td onClick={()=>handleCowDetail(cowItem)}>
+                  <Link to={"/reciptDetail/"+lotNo}>
                     <img
                       src={ImageNetwork(cowItem.cow_img)}
                       alt={cowItem.cow_name}
