@@ -15,16 +15,6 @@ const useCowList = () => {
     }
   };
 
-  const fetchCowListByFarm = async (member) => {
-    try {
-      apiCow.getCowListByFarm(member).then((response) => {
-        setCowList(response);
-      });
-    } catch (error) {
-      navigate("/error");
-      throw error;
-    }
-  };
 
   const createCowCatalog = async (cowCatalog,lotNo) => {
     try {
@@ -47,7 +37,7 @@ const useCowList = () => {
     }
   };
 
-  return { cowList, fetchCowList,fetchCowListByFarm, createCowCatalog, fetchCowCatalogList, cowCatalog };
+  return { cowList, fetchCowList, createCowCatalog, fetchCowCatalogList, cowCatalog };
 };
 
 export default useCowList;

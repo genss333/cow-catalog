@@ -74,7 +74,7 @@ const CowTable = ({ handleSelectCow, selectedCows, farmUuid }) => {
                 <p>อายุ: {cowItem.cow_age}</p>
                 <p>เพศ: {cowItem.cow_sex === "F" ? "เพศเมีย" : "เพศผู้"}</p>
               </td>
-              <td align="left">{cowItem.cow_belly}</td>
+              <td align="left">{cowItem.cow_weight === 0 ? "ยังไม่บันทึกน้ำหนัก" : cowItem.cow_weight + ' กิโลกรัม'}</td>
               <td align="center">
                 <input
                   type="checkbox"
