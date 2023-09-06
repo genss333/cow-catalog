@@ -42,7 +42,7 @@ const CowTable = ({ handleSelectCow, selectedCows, farmUuid }) => {
             <th></th>
             <th>ชื่อโค</th>
             <th>รายละเอียด</th>
-            <th>สถานะ</th>
+            <th>น้ำหนัก</th>
             <th></th>
           </tr>
         </thead>

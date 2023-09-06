@@ -13,7 +13,7 @@ const CowTableCatalog = ({ handleDelete, cart, isConfirm }) => {
           <th></th>
           <th>ชื่อโค</th>
           <th>รายละเอียด</th>
-          <th>สถานะ</th>
+          <th>น้ำหนัก</th>
           {isConfirm ? null : <th></th>}
         </tr>
       </thead>
